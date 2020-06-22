@@ -62,4 +62,5 @@ $benchmark_command
 
 echo -e "\n# Benchmark Patched (#37641)\n"
 silent "$install_package_command -D https://743140-24195339-gh.circle-artifacts.com/0/angular/compiler-cli-pr37641-3a6a8c51eb.tgz"
+silent "npx ngcc --properties es2015 browser module main --create-ivy-entry-points"
 $benchmark_command
