@@ -26,7 +26,17 @@ anchor_13_s: &aio
     - checkout
     - *setup
     - run: 
-        command: ./benchmark-project.sh https://github.com/alan-agius4/angular v9-testing yarn "ng build --configuration=fast --aot --source-map --watch --progress" aio
+        command: ./benchmark-project.sh https://github.com/alan-agius4/angular v9-testing yarn "ng build --configuration=fast --aot --source-map --watch --progress --forkTypeChecker" aio
+        no_output_timeout: 90m
+
+# From https://github.com/angular/angular/tree/master/aio
+anchor_13: &aio_no_fork
+  <<: *environment
+  steps:
+    - checkout
+    - *setup
+    - run: 
+        command: ./benchmark-project.sh https://github.com/alan-agius4/angular v9-testing yarn "ng build --configuration=fast --aot --source-map --watch --progress --forkTypeChecker=false" aio
         no_output_timeout: 90m
 
 version: 2
@@ -40,3 +50,4 @@ workflows:
   default_workflow:
     jobs:
       - aio
+      - aio_no_fork
