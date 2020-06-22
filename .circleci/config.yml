@@ -44,6 +44,9 @@ jobs:
   aio:
     <<: *node_12
     <<: *aio
+  aio_no_fork:
+    <<: *node_12
+    <<: *aio_no_fork
 
 workflows:
   version: 2
